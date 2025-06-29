@@ -1,0 +1,22 @@
+name: Mirror budal12.net
+
+on:
+  schedule:
+    - cron: '*/10 * * * *' # 매 10분마다 실행
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get budal12 page
+        uses: wei/curl@v1
+        with:
+          args: https://budal12.net/pr_kiss > budal12.html
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: budal12-page
+          path: budal12.html
