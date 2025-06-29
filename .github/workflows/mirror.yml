@@ -16,7 +16,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Get budal12 page
-        run: curl -L https://budal12.net/pr_kiss > index.html
+        run: curl -A "Mozilla/5.0" -L https://budal12.net/pr_kiss > index.html
+
 
       - name: Commit & Push
         env:
