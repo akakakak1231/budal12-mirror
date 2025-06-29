@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # 🔥 푸시 권한 설정 필수!
+  contents: write  # ✅ 반드시 on 블럭 밖에 위치해야 함 (매우 중요)
 
 jobs:
   build:
@@ -25,3 +25,4 @@ jobs:
           git add index.html
           git commit -m "Update mirror at $(date)" || echo "No changes"
           git push
+
