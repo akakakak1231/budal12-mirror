@@ -2,8 +2,11 @@ name: Mirror budal12.net
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # 10분마다
+    - cron: '*/10 * * * *'  # 10분마다 실행
   workflow_dispatch:
+
+permissions:
+  contents: write  # 🔥 푸시 권한 설정 필수!
 
 jobs:
   build:
