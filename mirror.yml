@@ -1,0 +1,26 @@
+name: Mirror budal12.net
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # 매 10분마다 실행
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v3
+
+      - name: Create mirror HTML
+        run: |
+          mkdir -p mirror
+          curl -s -A "Mozilla/5.0" https://budal12.net/pr_kiss > mirror/index.html
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add mirror/index.html
+          git commit -m "Update mirror at $(date)"
+          git push
